@@ -6,7 +6,6 @@ export const login = asyerrohander(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ message: "email and password required" });
   const result = await loginUser(email, password);
-  // set httpOnly cookies optionally
   res.cookie("accessToken", result.accessToken, { httpOnly: true, maxAge: 60 * 60 * 1000 });
   res.cookie("refreshToken", result.refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
   return res.json({  accessToken: result.accessToken, refreshToken: result.refreshToken });

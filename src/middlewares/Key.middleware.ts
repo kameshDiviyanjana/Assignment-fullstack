@@ -8,11 +8,9 @@ export const apiKeyMiddleware = (req: Request, res: Response, next: NextFunction
     return res.status(403).json({ message: "Forbidden: Invalid API Key" });
   }
 
-  next(); // API key is valid, proceed
+  next(); 
 };
 
-
-// tokenAuthMiddleware.ts
 
 
 export const tokenAuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
@@ -23,7 +21,6 @@ export const tokenAuthMiddleware = (req: Request, res: Response, next: NextFunct
 
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET_public !);
-        // req.user = payload; // optional
         next();
     } catch {
         return res.status(403).json({ message: "Invalid or Expired Token" });

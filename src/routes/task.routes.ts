@@ -19,7 +19,6 @@ router.post("/", authMiddleware,requireRole(["ADMIN", "USER"]), createTask);
 
 router.get("/",authMiddleware,requireRole(["ADMIN", "USER"]), getAllTasks);
 
-// More specific route MUST come before generic /:id route
 router.get("/user", authMiddleware,requireRole(["ADMIN", "USER"]), getTasksByUserId);
 
 console.log("[routes] /user/:userId route registered");
