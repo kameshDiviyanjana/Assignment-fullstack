@@ -52,20 +52,6 @@ export const createTask = asyerrohander(
     });
   }
 );
-// export const createTask = asyerrohander(async (req: Request, res: Response, next: NextFunction) => {
-//   const safe = sanitizeBody(req.body);
-
-//   const authUser: any = (req as any).user;
-//   if (!safe.ownerId && authUser?.id) safe.ownerId = authUser.id;
-
-//   if (!safe.dueDate) {
-//     const def = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-//     safe.dueDate = def.toISOString();
-//   }
-
-//   const created = await createTaskService(safe);
-//   return makerespon({ res, data: created, message: "Task created", status: 201 });
-// });
 
 export const getAllTasks = asyerrohander(async (req: Request, res: Response) => {
   const { page, limit, status, search } = req.query;
