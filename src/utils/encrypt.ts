@@ -4,7 +4,7 @@ import 'dotenv/config';
 const algorithm = "aes-256-cbc";
 
 // Read and normalize SECRET_KEY from env (remove surrounding quotes and trim)
-let rawSecret = process.env.SECRET_KEY;
+const rawSecret = process.env.SECRET_KEY;
 let secret = rawSecret ? rawSecret.replace(/^\s*["']?/, "").replace(/["']?\s*$/, "").trim() : undefined;
 
 if (!secret) {
