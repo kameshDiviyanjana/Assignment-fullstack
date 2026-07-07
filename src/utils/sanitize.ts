@@ -1,6 +1,3 @@
-/**
- * Sanitizes string input to prevent XSS and injection attacks
- */
 
 import sanitizeHtml from "sanitize-html";
 
