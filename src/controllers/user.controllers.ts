@@ -9,6 +9,7 @@ import {
   updateUserService,
   deleteUserService,
   getuserByadminService,
+  ActiveAndDeactiveUserServices,
 } from "../services/user.services";
 
 const normalizeRegisterBody = (body: any) => ({
@@ -64,3 +65,12 @@ export const getAllUserAdmin = asyerrohander(async (req: Request, res: Response)
   const users = await getuserByadminService();
   return makerespon({ res, data: users, message: "Users fetched" });
 });
+
+
+export const UserActiveAndDeactive = asyerrohander(async (req: Request, res: Response) => {
+  const id = String((req.params as any).id);
+  const status = (req.body as any).isActive;
+  const users = await ActiveAndDeactiveUserServices(id, status);
+  return makerespon({ res, data: users, message: "Users fetched" });
+});
+

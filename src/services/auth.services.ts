@@ -1,19 +1,85 @@
 import prisma from "../config/prisma";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { findUserByEmail } from "../repositories/auth.repositories";
 
-export const loginUser = async (email: string, password: string) => {
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) throw new Error("User not found");
+// export const loginUser = async (email: string, password: string) => {
+//   const user = await prisma.user.findUnique({ where: { email } });
+//   if (!user) throw new Error("User not found");
 
-  const ok = await bcrypt.compare(password, user.password);
-  if (!ok) throw new Error("Invalid credentials");
+//   const ok = await bcrypt.compare(password, user.password);
+//   if (!ok) throw new Error("Invalid credentials");
 
-  const payload = { id: user.id, firstname: user.firstname, email: user.email, role: user.role };
-  const accessToken = jwt.sign(payload, process.env.JWT_SECRET || "devsecret", { expiresIn: "1h" });
-  const refreshToken = jwt.sign(payload, process.env.REFRESH_SECRET || "devrefresh", { expiresIn: "7d" });
+//   const payload = { id: user.id, firstname: user.firstname, email: user.email, role: user.role };
+//   const accessToken = jwt.sign(payload, process.env.JWT_SECRET || "devsecret", { expiresIn: "1h" });
+//   const refreshToken = jwt.sign(payload, process.env.REFRESH_SECRET || "devrefresh", { expiresIn: "7d" });
 
-  return { user, accessToken, refreshToken };
+//   return { user, accessToken, refreshToken };
+// };
+
+export const loginUser = async (
+  email: string,
+  password: string
+) => {
+
+  const user = await findUserByEmail(email);
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+
+  // Check account status
+  if (!user.isActive) {
+    throw new Error("Your account is inactive. Please contact admin.");
+  }
+
+
+  const ok = await bcrypt.compare(
+    password,
+    user.password
+  );
+
+  if (!ok) {
+    throw new Error("Invalid credentials");
+  }
+
+
+  const payload = {
+    id: user.id,
+    firstname: user.firstname,
+    email: user.email,
+    role: user.role,
+  };
+
+
+  const accessToken = jwt.sign(
+    payload,
+    process.env.JWT_SECRET || "devsecret",
+    {
+      expiresIn: "1h",
+    }
+  );
+
+
+  const refreshToken = jwt.sign(
+    payload,
+    process.env.REFRESH_SECRET || "devrefresh",
+    {
+      expiresIn: "7d",
+    }
+  );
+
+
+  // remove password from response
+  const { password: _, ...safeUser } = user;
+
+
+  return {
+    user: safeUser,
+    accessToken,
+    refreshToken,
+  };
 };
 
 export const refreshTokens = (token: string) => {

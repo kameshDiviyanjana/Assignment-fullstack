@@ -27,3 +27,13 @@ export  const createUserSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 
+export const updateUserSchema = z.object({
+  firstname: z.string().min(1, "First name is required").optional(),
+  lastname: z.string().min(1, "Last name is required").optional(),
+  email: z.string().email("Invalid email address").optional(),
+  password: z.string().min(6, "Password must be at least 6 characters long").optional(),
+  isActive: z.boolean().optional(),
+  role: z.enum(["USER", "ADMIN"]).optional(),
+});
+
+
