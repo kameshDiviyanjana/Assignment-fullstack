@@ -1,4 +1,5 @@
 import prisma from "../config/prisma";
+import { Prisma } from "@prisma/client";
 
 export const createTaskRepository = async (data: any) => {
   const { title, description, status, dueDate, ownerId } = data;
@@ -24,38 +25,70 @@ export const createTaskRepository = async (data: any) => {
   return task;
 };
 
+
 export const getAllTasksRepository = async (params: {
   page?: number;
   limit?: number;
   status?: "PENDING" | "COMPLETED" | "IN_PROGRESS";
   search?: string;
 }) => {
-  const { page = 1, limit = 10, status, search } = params;
+  const {
+    page = 1,
+    limit = 10,
+    status,
+    search,
+  } = params;
 
   const skip = (page - 1) * limit;
 
-  const where: any = {
-    ...(status && { status }),
+  const where: Prisma.TaskWhereInput = {};
 
-    ...(search && {
-      title: {
-        contains: search,
-        mode: "insensitive",
+  if (status) {
+    where.status = status;
+  }
+
+  if (search) {
+    where.OR = [
+      {
+        title: {
+          contains: search,
+          mode: Prisma.QueryMode.insensitive,
+        },
       },
-    }),
-  };
+      {
+        owner: {
+          is: {
+            firstname: {
+              contains: search,
+              mode: Prisma.QueryMode.insensitive,
+            },
+          },
+        },
+      },
+      {
+        owner: {
+          is: {
+            lastname: {
+              contains: search,
+              mode: Prisma.QueryMode.insensitive,
+            },
+          },
+        },
+      },
+    ];
+  }
 
   const [tasks, total] = await Promise.all([
     prisma.task.findMany({
       where,
-      orderBy: { createdAt: "desc" },
       skip,
       take: limit,
-
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
         owner: {
           select: {
-       
             firstname: true,
             lastname: true,
           },
@@ -63,7 +96,9 @@ export const getAllTasksRepository = async (params: {
       },
     }),
 
-    prisma.task.count({ where }),
+    prisma.task.count({
+      where,
+    }),
   ]);
 
   return {
@@ -76,7 +111,6 @@ export const getAllTasksRepository = async (params: {
     },
   };
 };
-
 
 export const getAllUserTasksRepository = async (params: {
   userId: string;
@@ -96,7 +130,7 @@ export const getAllUserTasksRepository = async (params: {
   const skip = (page - 1) * limit;
 
   const where = {
-    ownerId: userId, 
+    ownerId: userId,
 
     ...(status && { status }),
 
