@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "599f02e6-4b69-4489-ac76-8ad62fd59654",
+    "name": "Assiment-Full-stack-Development",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54064178",
+    "_collection_link": "https://go.postman.co/collection/54064178-599f02e6-4b69-4489-ac76-8ad62fd59654?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User Registertion",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstname\": \"John\",\r\n    \"lastname\": \"Doe\",\r\n    \"email\" : \"john@gmail.com\",\r\n    \"password\": \"123456\"\r\n    \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/bs/user/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "user",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"email\" : \"john@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/bs/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find All task Admin",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstname\": \"John\",\r\n    \"lastname\": \"Doe\",\r\n    \"email\" : \"john@gmail.com\",\r\n    \"password\": \"123456\"\r\n    \r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/bs/task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find User task",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/bs/task/user?userId=0340d635-c521-45e8-9568-5019ec34557d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "task",
+            "user"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "0340d635-c521-45e8-9568-5019ec34557d"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Task User",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"John\",\r\n  \"lastname\": \"nimalef\",\r\n  \"email\": \"john@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/bs/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "user",
+            "e3ca68ac-f94e-423b-b7b2-bace689abb7b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Task User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/bs/task/1fe20cf5-21f7-461f-b608-d513f055c719",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "task",
+            "1fe20cf5-21f7-461f-b608-d513f055c719"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Task Admin",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/bs/task/1fe20cf5-21f7-461f-b608-d513f055c719",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "task",
+            "1fe20cf5-21f7-461f-b608-d513f055c719"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Task Admin",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_0n5c}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"John\",\r\n  \"lastname\": \"nimalef\",\r\n  \"email\": \"john@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/bs/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "user",
+            "e3ca68ac-f94e-423b-b7b2-bace689abb7b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find User By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/bs/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "bs",
+            "user",
+            "e3ca68ac-f94e-423b-b7b2-bace689abb7b"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_0n5c",
+      "secret": true
+    }
+  ]
+}
