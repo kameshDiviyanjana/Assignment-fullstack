@@ -1,14 +1,14 @@
 import { jest, describe, it, expect, beforeEach } from "@jest/globals";
-import prisma from "../config/prisma";
+import prisma from "../src/config/prisma";
 import { 
   createTaskService, 
   getTaskByIdService, 
   updateTaskService, 
   deleteTaskService 
-} from "./task.services";
+} from "../src/services/task.services";
 
 // Mock the prisma configuration module
-jest.mock("../config/prisma", () => ({
+jest.mock("../src/config/prisma", () => ({
   __esModule: true,
   default: {
     task: {

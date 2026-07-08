@@ -1,5 +1,5 @@
 import { describe, it, expect } from "@jest/globals";
-import { encrypt, decrypt } from "./encrypt";
+import { encrypt, decrypt } from "../src/utils/encrypt";
 
 describe("Encryption/Decryption utility", () => {
   it("should encrypt and decrypt text successfully", () => {

@@ -22,6 +22,7 @@ export const createUserRepositorie = async (data: any) => {
   if (existing) throw new Error("Email already exists");
 
   const hashed = await bcrypt.hash(password, 10);
+  const isActive = data.isActive !== undefined ? Boolean(data.isActive) : true;
 
   const user = await prisma.user.create({
     data: {
@@ -30,6 +31,7 @@ export const createUserRepositorie = async (data: any) => {
       email,
       password: hashed,
       role: role as any,
+      isActive,
     },
   });
 
@@ -54,27 +56,27 @@ export const getAllUsersRepository = async (params: {
 
   const where = search
     ? {
-        OR: [
-          {
-            firstname: {
-              contains: search,
-              mode: "insensitive" as const,
-            },
+      OR: [
+        {
+          firstname: {
+            contains: search,
+            mode: "insensitive" as const,
           },
-          {
-            lastname: {
-              contains: search,
-              mode: "insensitive" as const,
-            },
+        },
+        {
+          lastname: {
+            contains: search,
+            mode: "insensitive" as const,
           },
-          {
-            email: {
-              contains: search,
-              mode: "insensitive" as const,
-            },
+        },
+        {
+          email: {
+            contains: search,
+            mode: "insensitive" as const,
           },
-        ],
-      }
+        },
+      ],
+    }
     : {};
 
   const [users, total] = await Promise.all([
@@ -126,9 +128,25 @@ export const getAllUserAdminRepository = async () => {
     select: {
       id: true,
       firstname: true,
+      isActive: true,
     },
     orderBy: {
       createdAt: "desc",
     },
   });
 };
+
+
+export const ActiveAndDeactiveUserRepositorie = async (id: string, status: boolean) => {
+  return prisma.user.update({
+    where: { id },
+    data: { isActive: status },
+  });
+};
+
+// export const DeactiveUserRepositorie = async (id: string) => {
+//   return prisma.user.update({
+//     where: { id },
+//     data: { isActive: false },
+//   });
+// };
