@@ -22,14 +22,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/bs/user/register",
-          "protocol": "http",
+          "raw": "{{baseurl}}/user/register",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "user",
             "register"
           ]
@@ -44,7 +41,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n        \"email\" : \"john@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+          "raw": "{\r\n        \"email\" : \"gayana@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -52,14 +49,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/bs/auth/login",
-          "protocol": "http",
+          "raw": "{{baseurl}}/auth/login",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "auth",
             "login"
           ]
@@ -80,14 +74,11 @@
           "raw": "{\r\n    \"firstname\": \"John\",\r\n    \"lastname\": \"Doe\",\r\n    \"email\" : \"john@gmail.com\",\r\n    \"password\": \"123456\"\r\n    \r\n}"
         },
         "url": {
-          "raw": "http://localhost:8000/bs/task",
-          "protocol": "http",
+          "raw": "{{baseurl}}/task",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "task"
           ]
         }
@@ -100,15 +91,11 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/bs/task/user?userId=0340d635-c521-45e8-9568-5019ec34557d",
-          "protocol": "http",
+          "raw": "{{baseurl}}/user?userId=0340d635-c521-45e8-9568-5019ec34557d",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
-            "task",
             "user"
           ],
           "query": [
@@ -136,14 +123,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/bs/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
-          "protocol": "http",
+          "raw": "{{baseurl}}/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "user",
             "e3ca68ac-f94e-423b-b7b2-bace689abb7b"
           ]
@@ -157,14 +141,11 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/bs/task/1fe20cf5-21f7-461f-b608-d513f055c719",
-          "protocol": "http",
+          "raw": "{{baseurl}}/task/1fe20cf5-21f7-461f-b608-d513f055c719",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "task",
             "1fe20cf5-21f7-461f-b608-d513f055c719"
           ]
@@ -188,14 +169,11 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/bs/task/1fe20cf5-21f7-461f-b608-d513f055c719",
-          "protocol": "http",
+          "raw": "{{baseurl}}/task/1fe20cf5-21f7-461f-b608-d513f055c719",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "task",
             "1fe20cf5-21f7-461f-b608-d513f055c719"
           ]
@@ -228,14 +206,11 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/bs/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
-          "protocol": "http",
+          "raw": "{{baseurl}}/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "user",
             "e3ca68ac-f94e-423b-b7b2-bace689abb7b"
           ]
@@ -249,14 +224,11 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/bs/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
-          "protocol": "http",
+          "raw": "{{baseurl}}/user/e3ca68ac-f94e-423b-b7b2-bace689abb7b",
           "host": [
-            "localhost"
+            "{{baseurl}}"
           ],
-          "port": "8000",
           "path": [
-            "bs",
             "user",
             "e3ca68ac-f94e-423b-b7b2-bace689abb7b"
           ]
